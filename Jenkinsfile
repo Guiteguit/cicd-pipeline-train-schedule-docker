@@ -8,5 +8,14 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
+        stage('Build Docker Image') {
+            when {
+                branch 'master'
+            }
+            agent { dockerfile true }
+            steps {
+                sh 'node --version'
+            }
+        }
     }
 }
